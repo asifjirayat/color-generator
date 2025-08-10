@@ -6,7 +6,7 @@ export default function ColorSwatch({ color, label, isBase = false }) {
         className={`w-16 h-16 border-2 rounded-lg shadow-sm transition-all duration-150 ${
           isBase
             ? "border-gray-400 transform scale-105 ring-4 ring-blue-100"
-            : "border-gray-300 hover:sclae-105 hover:shadow"
+            : "border-gray-300 hover:scale-105 hover:shadow"
         }`}
         style={{ backgroundColor: color }}
       />

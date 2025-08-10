@@ -23,7 +23,7 @@ export default function ColorControls({ baseColor, step }) {
               disabled
               className="w-10 h-10 cursor-pointer"
             />
-            <span className="text-sm text-gray-600">#3B82F6</span>
+            <span className="text-sm text-gray-600">{baseColor}</span>
           </div>
         </div>
       </div>
