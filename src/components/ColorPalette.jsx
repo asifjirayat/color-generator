@@ -1,6 +1,6 @@
 import ColorSwatch from "./ColorSwatch.jsx";
 
-export default function ColorPalette({ palette, onCopyColor }) {
+export default function ColorPalette({ palette, onColorCopy }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {/* Tints */}
@@ -20,7 +20,7 @@ export default function ColorPalette({ palette, onCopyColor }) {
               key={i}
               color={color}
               label={`+${(i + 1) * 10}%`}
-              onCopy={onCopyColor}
+              onCopy={onColorCopy}
             />
           ))}
         </div>
@@ -43,7 +43,7 @@ export default function ColorPalette({ palette, onCopyColor }) {
               key={i}
               color={color}
               label={`-${(i + 1) * 10}%`}
-              onCopy={onCopyColor}
+              onCopy={onColorCopy}
             />
           ))}
         </div>
@@ -66,7 +66,7 @@ export default function ColorPalette({ palette, onCopyColor }) {
               key={i}
               color={color}
               label={`sat -${(i + 1) * 10}%`}
-              onCopy={onCopyColor}
+              onCopy={onColorCopy}
             />
           ))}
         </div>

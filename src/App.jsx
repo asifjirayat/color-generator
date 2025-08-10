@@ -5,9 +5,8 @@ import ColorPalette from "./components/ColorPalette.jsx";
 import ToastNotification from "./components/ToastNotification.jsx";
 
 export default function App() {
-  //Static data
-  const baseColor = "#3b82f6";
-  const step = 10;
+  const [baseColor, setBaseColor] = useState("#3b82f6");
+  const [step, setStep] = useState(10);
 
   const palette = {
     base: "#3b82f6",
@@ -57,7 +56,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100-py-8 px-4">
+    <div className="min-h-screen bg-gray-100 py-8 px-4">
       <div className="max-w-5xl mx-auto space-y-8">
         {/* Header */}
         <header className="text-center">
@@ -69,8 +68,13 @@ export default function App() {
           </p>
         </header>
         {/* Controls (Static placeholder) */}
-        <ColorControls baseColor={baseColor} step={step} />
-        {/* Base Color */}
+        <ColorControls
+          baseColor={baseColor}
+          onColorChange={setBaseColor}
+          step={step}
+          onStepChange={setStep}
+        />
+        {/* Base Color Display */}
         <section className="text-center">
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Base Color
@@ -79,11 +83,11 @@ export default function App() {
             color={baseColor}
             label="Base Color"
             isBase
-            onCopy={handleColorCopy}
+            onCopy={() => handleColorCopy(baseColor)}
           />
         </section>
         {/* Generated Palette */}
-        <ColorPalette palette={palette} onCopyColor={handleColorCopy} />
+        <ColorPalette palette={palette} onColorCopy={handleColorCopy} />
         {/* Single Toast at top level */}
         <ToastNotification color={copiedColor} isVisible={isToastVisible} />
       </div>
