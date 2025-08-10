@@ -1,6 +1,8 @@
+import { useState, useRef, useEffect } from "react";
 import ColorSwatch from "./components/ColorSwatch.jsx";
 import ColorControls from "./components/ColorControls.jsx";
 import ColorPalette from "./components/ColorPalette.jsx";
+import ToastNotification from "./components/ToastNotification.jsx";
 
 export default function App() {
   //Static data
@@ -13,6 +15,46 @@ export default function App() {
     shades: ["#2a5ea3", "#1f4777", "#142f4b", "#0a1820"],
     tones: ["#5f9ef8", "#7fb7f9", "#9fc0fa", "#bfd8fb", "#dfeffb"],
   };
+
+  //Toast state lifted up
+  const [copiedColor, setCopiedColor] = useState(null);
+  const [isToastVisible, setIsToastVisible] = useState(false);
+  const toastTimerRef = useRef(null);
+
+  //Function to call when any color is copied
+  const handleColorCopy = async (color) => {
+    try {
+      await navigator.clipboard.writeText(color.toUpperCase());
+
+      //Clear existing timer
+      if (toastTimerRef.current) {
+        clearTimeout(toastTimerRef.current);
+      }
+
+      //Update state
+      setCopiedColor(color);
+      setIsToastVisible(true);
+
+      // Set new timer
+      toastTimerRef.current = setTimeout(() => {
+        setIsToastVisible(false);
+        setTimeout(() => {
+          setCopiedColor(null);
+        }, 300);
+      }, 4000);
+    } catch (err) {
+      console.log("Failed to copy: ", err);
+    }
+  };
+
+  // Cleanup on mount
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) {
+        clearTimeout(toastTimerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100-py-8 px-4">
@@ -33,10 +75,17 @@ export default function App() {
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Base Color
           </h2>
-          <ColorSwatch color={baseColor} label="Base Color" isBase />
+          <ColorSwatch
+            color={baseColor}
+            label="Base Color"
+            isBase
+            onCopy={handleColorCopy}
+          />
         </section>
         {/* Generated Palette */}
-        <ColorPalette palette={palette} />
+        <ColorPalette palette={palette} onCopyColor={handleColorCopy} />
+        {/* Single Toast at top level */}
+        <ToastNotification color={copiedColor} isVisible={isToastVisible} />
       </div>
     </div>
   );
