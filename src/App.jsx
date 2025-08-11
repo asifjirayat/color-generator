@@ -79,6 +79,20 @@ export default function App() {
         />
         {/* Single Toast at top level */}
         <ToastNotification color={copiedColor} isVisible={isToastVisible} />
+        {/* Footer */}
+        <footer className="mt-12 text-center">
+          <p className="text-xs text-gray-500 font-mono leading-tight">
+            created by{" "}
+            <a
+              href="https://github.com/asifjirayat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-gray-900 underline transition-colors duration-150"
+            >
+              @asifjirayat
+            </a>
+          </p>
+        </footer>
       </div>
     </div>
   );
