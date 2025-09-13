@@ -7,7 +7,6 @@ export default function ColorSwatch({
   onCopy,
   size = "w-16 h-16",
 }) {
-  console.log(size);
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
