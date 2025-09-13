@@ -32,17 +32,24 @@ export default function ColorControls({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-6 gap-6 items-stretch">
       {/* Left Column: Controls */}
-      <div className="lg:col-span-3 space-y-6">
+      <div className="lg:col-span-4 space-y-6">
         {/* Color Input Section */}
         <div className="bg-white p-6 rounded-lg shadow">
           <h3 className="text-lg font-medium text-gray-700 mb-4">
             🎨 Pick a Color
           </h3>
 
-          {/* Hex Input */}
-          <div className="flex mb-4">
+          <div className="flex items-stretch ">
+            {/* Color Picker & Hex Input */}
+            <input
+              type="color"
+              value={baseColor}
+              onChange={(e) => onColorChange(e.target.value)}
+              className="w-10 h-10 cursor-pointer rounded-md"
+              aria-label="Color picker"
+            />
             <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
               #
             </span>
@@ -52,23 +59,9 @@ export default function ColorControls({
               onChange={handleChange}
               placeholder="FFFFFF"
               maxLength={6}
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-r-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
+              className="w-24 px-3 py-2 border border-gray-300 rounded-r-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
               aria-label="Hex color code"
             />
-          </div>
-
-          {/* Color Picker */}
-          <div className="flex items-center space-x-2">
-            <input
-              type="color"
-              value={baseColor}
-              onChange={(e) => onColorChange(e.target.value)}
-              className="w-10 h-10 cursor-pointer border-none"
-              aria-label="Color picker"
-            />
-            <span className="text-sm text-gray-600 font-mono">
-              {baseColor.toUpperCase()}
-            </span>
           </div>
           {/* Step Control */}
           <div className="flex flex-col mt-3 pt-3">
@@ -106,6 +99,7 @@ export default function ColorControls({
             label="Selected"
             isBase
             onCopy={() => onColorCopy(baseColor)}
+            size={32}
           />
         </div>
       </div>
