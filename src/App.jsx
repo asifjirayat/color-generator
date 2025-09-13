@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import ColorSwatch from "./components/ColorSwatch.jsx";
 import ColorControls from "./components/ColorControls.jsx";
 import ColorPalette from "./components/ColorPalette.jsx";
 import ToastNotification from "./components/ToastNotification.jsx";
