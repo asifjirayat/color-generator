@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-export default function ColorSwatch({ color, label, isBase = false, onCopy }) {
+export default function ColorSwatch({
+  color,
+  label,
+  isBase = false,
+  onCopy,
+  size = 16,
+}) {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
@@ -33,7 +39,7 @@ export default function ColorSwatch({ color, label, isBase = false, onCopy }) {
     >
       {/* Color Square */}
       <div
-        className={`w-16 h-16 border-2 rounded-lg shadow-sm transition-all duration-200 
+        className={`w-${size} h-${size} border-2 rounded-lg shadow-sm transition-all duration-200 
             ${
               isCopied
                 ? "ring-4 ring-green-300 border-green-500 scale-95"
