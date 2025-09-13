@@ -5,8 +5,9 @@ export default function ColorSwatch({
   label,
   isBase = false,
   onCopy,
-  size = 16,
+  size = "w-16 h-16",
 }) {
+  console.log(size);
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
@@ -39,7 +40,7 @@ export default function ColorSwatch({
     >
       {/* Color Square */}
       <div
-        className={`w-${size} h-${size} border-2 rounded-lg shadow-sm transition-all duration-200 
+        className={`${size} border-2 rounded-lg shadow-sm transition-all duration-200 
             ${
               isCopied
                 ? "ring-4 ring-green-300 border-green-500 scale-95"

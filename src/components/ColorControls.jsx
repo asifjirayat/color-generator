@@ -99,7 +99,7 @@ export default function ColorControls({
             label="Selected"
             isBase
             onCopy={() => onColorCopy(baseColor)}
-            size={32}
+            size="w-32 h-32"
           />
         </div>
       </div>
