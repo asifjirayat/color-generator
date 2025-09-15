@@ -9,8 +9,9 @@ export default function App() {
   const [step, setStep] = useState(10);
 
   const palette = useMemo(() => {
-    return generatePalette(baseColor, step);
-  }, []);
+    const result = generatePalette(baseColor, step);
+    return result;
+  }, [baseColor, step]);
 
   //Toast state lifted up
   const [copiedColor, setCopiedColor] = useState(null);
