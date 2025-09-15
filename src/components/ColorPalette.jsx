@@ -1,6 +1,7 @@
+import { memo } from "react";
 import ColorSwatch from "./ColorSwatch.jsx";
 
-export default function ColorPalette({ palette, onColorCopy, step }) {
+const ColorPalette = memo(({ palette, onColorCopy, step }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {/* Tints */}
@@ -73,4 +74,6 @@ export default function ColorPalette({ palette, onColorCopy, step }) {
       </div>
     </div>
   );
-}
+});
+
+export default ColorPalette;

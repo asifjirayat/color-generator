@@ -7,7 +7,7 @@ import { hexToHsl, hslToHex } from "./colorUtils";
  * @param {number} step - Step increment in percentage (e.g., 10)
  * @returns {object} { base, tints, shades, tones }
  */
-export function generatePalette(hex, step = 10) {
+export const generatePalette = (hex, step = 10) => {
   const [h, s, l] = hexToHsl(hex);
   const palette = { base: hex, tints: [], shades: [], tones: [] };
 
@@ -27,4 +27,4 @@ export function generatePalette(hex, step = 10) {
   }
 
   return palette;
-}
+};

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import ColorControls from "./components/ColorControls.jsx";
 import ColorPalette from "./components/ColorPalette.jsx";
 import ToastNotification from "./components/ToastNotification.jsx";
@@ -8,7 +8,10 @@ export default function App() {
   const [baseColor, setBaseColor] = useState("#3b82f6");
   const [step, setStep] = useState(10);
 
-  const palette = generatePalette(baseColor, step);
+  const palette = useMemo(() => {
+    const result = generatePalette(baseColor, step);
+    return result;
+  }, [baseColor, step]);
 
   //Toast state lifted up
   const [copiedColor, setCopiedColor] = useState(null);
@@ -16,7 +19,7 @@ export default function App() {
   const toastTimerRef = useRef(null);
 
   //Function to call when any color is copied
-  const handleColorCopy = async (color) => {
+  const handleColorCopy = useCallback(async (color) => {
     try {
       await navigator.clipboard.writeText(color.toUpperCase());
 
@@ -39,7 +42,7 @@ export default function App() {
     } catch (err) {
       console.log("Failed to copy: ", err);
     }
-  };
+  }, []);
 
   // Cleanup on mount
   useEffect(() => {
