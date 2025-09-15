@@ -52,7 +52,7 @@ const ColorSwatch = memo(
           className={`text xs font-mono font-medium px-1.5 py-0.5 rounded border shadow-sm transition-all duration-200 ${
             isCopied
               ? "bg-green-100 border-green-300 text-green-800"
-              : "bg-white/80 border-gray-200 text-gray-800 group-hover:bh-white"
+              : "bg-white/80 border-gray-200 text-gray-800 group-hover:bg-white"
           }
         `}
         >
