@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import ColorControls from "./components/ColorControls.jsx";
 import ColorPalette from "./components/ColorPalette.jsx";
 import ToastNotification from "./components/ToastNotification.jsx";
@@ -8,7 +8,9 @@ export default function App() {
   const [baseColor, setBaseColor] = useState("#3b82f6");
   const [step, setStep] = useState(10);
 
-  const palette = generatePalette(baseColor, step);
+  const palette = useMemo(() => {
+    return generatePalette(baseColor, step);
+  }, []);
 
   //Toast state lifted up
   const [copiedColor, setCopiedColor] = useState(null);
