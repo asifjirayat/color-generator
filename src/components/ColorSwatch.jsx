@@ -2,7 +2,6 @@ import { memo, useState } from "react";
 
 const ColorSwatch = memo(
   ({ color, label, isBase = false, onCopy, size = "w-16 h-16" }) => {
-    console.log("%c ColorSwatch.jsx", "color:white;background-color:purple");
     const [isCopied, setIsCopied] = useState(false);
 
     const handleCopy = () => {
